@@ -1,5 +1,6 @@
 """Standardized Trading Analysis for LuxAlgo® Backtesting System™ (S&O)"""
 
+import os
 import logging
 from typing import Dict, List, Any
 import pandas as pd
@@ -16,9 +17,14 @@ from dash.dash_table.Format import Format, Scheme
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
+
+# extract password from environment variable
+password = os.environ.get("POSTGRES_PASSWORD")
+username = os.environ.get("USERNAME")
+
 # Constants
 INITIAL_CAPITAL = 20000
-DB_URL = "postgresql://charlesobrien:password@localhost:5432/trading_db"
+DB_URL = "postgresql://username:password@localhost:5432/trading_db"
 
 
 def load_data() -> pd.DataFrame:
