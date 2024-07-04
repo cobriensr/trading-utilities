@@ -1,0 +1,5 @@
+# ignore environment files
+.env
+
+# ignore mac os folders
+.DS_STORE
