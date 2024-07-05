@@ -175,7 +175,7 @@ def clean_and_transform_data(df: pd.DataFrame) -> pd.DataFrame:
     df["win_loss"] = df["Profit USD"].apply(lambda x: "Win" if x > 0 else "Loss")
 
     # add strategy column
-    df["Strategy"] = "1M Neocloud Micro"
+    df["Strategy"] = "1M Neocloud Mini"
 
     # add margin and commission columns
     df["Margin"] = (df["Contracts"] * 100.00).round(2)
