@@ -54,7 +54,7 @@ class Trade(Base):
 
 
 # extract password from environment variable
-password = os.environ.get("POSTGRES_PASSWORD")
+password = os.getenv("POSTGRES_PASSWORD")
 username = os.getenv("USERNAME")
 
 # Check if env values are set
