@@ -7,6 +7,7 @@ from typing import Optional
 import pytz
 import pandas as pd
 import psycopg2
+from dotenv import load_dotenv
 from sqlalchemy import create_engine, Column, Integer, String, Float, Date, Time, Enum
 from sqlalchemy.orm import declarative_base, sessionmaker
 from sqlalchemy.exc import IntegrityError, SQLAlchemyError, OperationalError
@@ -14,6 +15,9 @@ from sqlalchemy.engine.url import URL
 from sqlalchemy.orm.session import Session as SQLAlchemySession
 
 # pylint: disable=missing-function-docstring, missing-class-docstring, trailing-whitespace, line-too-long, missing-final-newline
+
+# Load the environment variables from .env file
+load_dotenv()
 
 # Database setup
 Base = declarative_base()
@@ -51,7 +55,13 @@ class Trade(Base):
 
 # extract password from environment variable
 password = os.environ.get("POSTGRES_PASSWORD")
-username = os.environ.get("USERNAME")
+username = os.getenv("USERNAME")
+
+# Check if env values are set
+if password is None:
+    raise ValueError("POSTGRES_PASSWORD environment variable is not set")
+if username is None:
+    raise ValueError("USERNAME environment variable is not set")
 
 # create database URL connection string
 db_url = URL.create(
