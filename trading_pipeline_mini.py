@@ -66,7 +66,7 @@ if username is None:
 # create database URL connection string
 db_url = URL.create(
     drivername="postgresql",
-    username="username",
+    username=username,
     password=password,
     host="localhost",
     port=5432,
